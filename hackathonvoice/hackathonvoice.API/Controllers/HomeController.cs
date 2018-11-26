@@ -9,7 +9,7 @@ namespace hackathonvoice.API.Controllers
         [Route("{*catchall}")]
         public IActionResult Index()
         {
-            return View();
+            return View("../Administration/Administration");
         }
     }
 }
