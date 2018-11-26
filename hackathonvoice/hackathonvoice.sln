@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hackathonvoice.API", "hacka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hackathonvoice.Database", "hackathonvoice.Database\hackathonvoice.Database.csproj", "{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hackathonvoice.Domain", "hackathonvoice.Domain\hackathonvoice.Domain.csproj", "{800DA462-695B-46E9-B21D-3E1C0CA20B71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800DA462-695B-46E9-B21D-3E1C0CA20B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800DA462-695B-46E9-B21D-3E1C0CA20B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800DA462-695B-46E9-B21D-3E1C0CA20B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800DA462-695B-46E9-B21D-3E1C0CA20B71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
