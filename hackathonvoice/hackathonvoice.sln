@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hackathonvoice.API", "hackathonvoice.API\hackathonvoice.API.csproj", "{07FF30AD-2BEB-4C82-B036-67D13395124A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hackathonvoice.Database", "hackathonvoice.Database\hackathonvoice.Database.csproj", "{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{07FF30AD-2BEB-4C82-B036-67D13395124A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07FF30AD-2BEB-4C82-B036-67D13395124A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07FF30AD-2BEB-4C82-B036-67D13395124A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F86FFF4E-D032-4E5E-947E-DAB6D9E57C13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
