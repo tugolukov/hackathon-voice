@@ -46,7 +46,7 @@ namespace hackathonvoice.API.Controllers
                 var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.Wav, RecognitionLanguage.Russian);
                 try
                 {
-                    var kek = System.IO.File.OpenRead("audio_2018-11-26_23-54-13.wav");
+                    var kek = System.IO.File.OpenRead("Vocaroo_s1Ri4QzSnl1i.wav");
                     var result = await client.SpeechToTextAsync(speechRecognitionOptions, kek, CancellationToken.None).ConfigureAwait(false);
                     if (result.TransportStatus != TransportStatus.Ok || result.StatusCode != HttpStatusCode.OK)
                     {
