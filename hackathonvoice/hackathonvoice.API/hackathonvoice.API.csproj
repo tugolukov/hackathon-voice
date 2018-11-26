@@ -6,6 +6,17 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+            <Version>2.2.0-preview1</Version>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore">
+          <Version>4.0.1</Version>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\hackathonvoice.Database\hackathonvoice.Database.csproj" />
+      <ProjectReference Include="..\hackathonvoice.Domain\hackathonvoice.Domain.csproj" />
     </ItemGroup>
 
 </Project>
