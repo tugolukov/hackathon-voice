@@ -5,6 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Cloud.Speech.V1">
+          <Version>1.1.0-beta02</Version>
+        </PackageReference>
+        <PackageReference Include="ITCC.YandexSpeechKitClient">
+          <Version>1.0.2</Version>
+        </PackageReference>
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
             <Version>2.2.0-preview1</Version>
