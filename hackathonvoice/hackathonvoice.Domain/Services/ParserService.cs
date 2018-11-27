@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using hackathonvoice.Domain.Interfaces;
-using hackathonvoice.Domain.Models;
+using hackathonvoice.Domain.ViewModels;
 
 namespace hackathonvoice.Domain.Services
 {
@@ -14,7 +14,7 @@ namespace hackathonvoice.Domain.Services
 
     public class ParserService : IParserService
     {
-        public Task<CardModel> TextToCard(string text)
+        public async Task<ReportModel> TextToCard(string text)
         {
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             Dictionary<int, string> nextdictionary = new Dictionary<int, string>();
@@ -24,18 +24,57 @@ namespace hackathonvoice.Domain.Services
 
             Dictionary<int, List<int>> keywords = new Dictionary<int, List<int>>();
 
-            // устанавливаем ключевые слова
-            List<string> keys = new List<string>()
+            //жалоб
+            List<string> descriptions = new List<string>()
+            {
+                "жалоб",
+                "жалует",
+                "беспоко"
+            };
+            //диагнозы
+            List<string> diagnoses = new List<string>()
+            {
+                "диагноз",
+                "вердикт",
+                "заключ"
+            };
+            //рецепты
+            List<string> recipe = new List<string>()
+            {
+                "назнач",
+                "лекарст",
+                "принима",
+                "лечени"
+            };
+            List<string> name = new List<string>()
             {
                 "имя",
-                "пациент",
-                "номер",
-                "полис",
-                "жалоб",
-                "диагноз",
-                "назнач",
-                "лекарств"
+                "зовут",
+                "пациент"
             };
+            List<string> policy = new List<string>()
+            {
+                "номер",
+                "полис"
+            };
+            
+            // устанавливаем ключевые слова
+            List<string> keys = new List<string>();
+            
+            List<string> allkeys = new List<string>();
+            allkeys.AddRange(descriptions);
+            allkeys.AddRange(diagnoses);
+            allkeys.AddRange(recipe);
+            allkeys.AddRange(name);
+            allkeys.AddRange(policy);
+            
+            foreach (var allkey in allkeys)
+            {
+                if (text.Contains(allkey))
+                {
+                    keys.Add(allkey);
+                }
+            }
 
             // Присваиваем словам ключи
             List<Litera> phrases = new List<Litera>();
@@ -127,6 +166,65 @@ namespace hackathonvoice.Domain.Services
                 model.Add(result[i].Text, result[i+1].Text);
             }
 
+            ReportModel report = new ReportModel();
+            
+            PatientModel patient = new PatientModel();
+            VisitModel visit = new VisitModel();
+            
+            foreach (var item in name)
+            {
+                if (model.ContainsKey(item))
+                {
+                    var data = model.First(a => a.Key.Contains(item)).Value;
+                    patient.FullName = data;
+                    break;
+                }
+            }
+    
+            foreach (var item in policy)
+            {
+                if (model.ContainsKey(item))
+                {
+                    var data = model.First(a => a.Key.Contains(item)).Value;
+                    patient.Policy = data;
+                    break;
+                }
+            }
+    
+            foreach (var item in descriptions)
+            {
+                if (model.ContainsKey(item))
+                {
+                    var data = model.First(a => a.Key.Contains(item)).Value;
+                    visit.Description = data;
+                    break;
+                }
+            }
+    
+            foreach (var item in diagnoses)
+            {
+                if (model.ContainsKey(item))
+                {
+                    var data = model.First(a => a.Key.Contains(item)).Value;
+                    visit.Diagnoses = data;
+                    break;
+                }
+            }
+    
+            foreach (var item in recipe)
+            {
+                if (model.ContainsKey(item))
+                {
+                    var data = model.First(a => a.Key.Contains(item)).Value;
+                    visit.Recipe = data;
+                    break;
+                }
+            }
+
+            report.PatientModel = patient;
+            report.VisitModel = visit;
+
+            return report;
         }
     }
 }

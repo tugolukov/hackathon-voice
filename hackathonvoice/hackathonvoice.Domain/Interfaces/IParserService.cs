@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using hackathonvoice.Domain.Models;
+using hackathonvoice.Domain.ViewModels;
 
 namespace hackathonvoice.Domain.Interfaces
 {
     public interface IParserService
     {
-        Task<CardModel> TextToCard(string text);
+        Task<ReportModel> TextToCard(string text);
     }
 }
