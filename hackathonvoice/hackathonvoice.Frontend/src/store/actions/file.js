@@ -1,4 +1,5 @@
 import { push } from 'connected-react-router';
+import { NotificationManager } from 'react-notifications';
 
 export const LOAD_FILE_REQUEST = 'POST_FILE_REQUEST';
 export const LOAD_FILE_SUCCESS = 'POST_FILE_SUCCESS';
@@ -18,6 +19,7 @@ export function loadFile(file) {
       dispatch(push('/result'));
     } catch (error) {
       dispatch({ type: LOAD_FILE_FAILURE, payload: error.message });
+      NotificationManager.error('Вы загрузили слишком большой файл. Попробуйте снова!', 'Ошибка', 3000);
     }
     return null;
   };

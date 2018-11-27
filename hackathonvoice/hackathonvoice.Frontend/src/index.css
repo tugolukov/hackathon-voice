@@ -9,6 +9,12 @@ body,
     color: #ffffff;
 }
 
+.main-content {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
 }
