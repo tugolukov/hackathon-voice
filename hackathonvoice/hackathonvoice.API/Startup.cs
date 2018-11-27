@@ -1,5 +1,7 @@
-﻿using hackathonvoice.Database;
+﻿using AutoMapper;
+using hackathonvoice.Database;
 using hackathonvoice.Domain;
+using hackathonvoice.Domain.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +31,12 @@ namespace hackathonvoice.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            
+            services.AddAutoMapper(a =>
+            {
+                Mapper.Initialize(b => b.AddProfile(typeof(MappingProfile)));
+            });
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
