@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Rec from './Rec';
@@ -13,19 +13,22 @@ class Main extends React.Component {
   };
 
   render() {
+    const { isLoading } = this.props;
+
     return (
-      <div className="main-content-download">
-        <Rec handleOnStopRec={this.handleOnStopRec} />
-        <InformationSteps />
-      </div>
+      <Fragment>
+        <div className="main-content-download">
+          <Rec isLoading={isLoading} handleOnStopRec={this.handleOnStopRec} />
+          <InformationSteps />
+        </div>
+      </Fragment>
     );
   }
 }
 
-// const mapStateToProps = store => ({
-//   isLoading: store.file.isLoading,
-//   uploadFilesGuid: store.file.uploadFilesGuid,
-// });
+const mapStateToProps = store => ({
+  isLoading: store.file.isLoading,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: {
@@ -33,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
