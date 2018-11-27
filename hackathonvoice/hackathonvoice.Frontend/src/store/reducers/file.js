@@ -2,16 +2,12 @@ import {
   LOAD_FILE_REQUEST,
   LOAD_FILE_SUCCESS,
   LOAD_FILE_FAILURE,
-  CALCULATE_FILES_REQUEST,
-  CALCULATE_FILES_SUCCESS,
-  CALCULATE_FILES_FAILURE,
 } from '../actions/file';
 
 const initialState = {
-  uploadFilesGuid: [],
+  resText: null,
   isLoading: false,
   errorMessage: null,
-  operationGuid: null,
 };
 
 export default (state = initialState, action) => {
@@ -24,7 +20,7 @@ export default (state = initialState, action) => {
     case LOAD_FILE_SUCCESS:
       return {
         ...state,
-        uploadFilesGuid: _.concat(state.uploadFilesGuid, action.payload),
+        resText: action.payload,
         isLoading: false,
       };
     case LOAD_FILE_FAILURE:
@@ -32,11 +28,6 @@ export default (state = initialState, action) => {
         ...state,
         errorMessage: action.payload,
         isLoading: false,
-      };
-    case CALCULATE_FILES_SUCCESS:
-      return {
-        ...state,
-        operationGuid: action.payload,
       };
     default:
       return state;

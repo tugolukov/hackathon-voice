@@ -4,12 +4,9 @@ import Button from '@material-ui/core/Button';
 import { ReactMic } from 'react-mic';
 
 class Ric extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      record: false,
-    };
-  }
+  state = {
+    record: false,
+  };
 
   handleToRecording = () => {
     const { record } = this.state;
@@ -19,24 +16,16 @@ class Ric extends React.Component {
     });
   };
 
-  onData = (recordedBlob) => {
-    console.log('chunk of real-time data is: ', recordedBlob);
-  };
-
-  onStop = (recordedBlob) => {
-    console.log('recordedBlob is: ', recordedBlob);
-  };
-
   render() {
     const { record } = this.state;
+    const { handleOnStopRec } = this.props;
 
     return (
       <div className="rec-container">
         <ReactMic
           record={record}
           className="sound-wave"
-          onStop={this.onStop}
-          onData={this.onData}
+          onStop={handleOnStopRec}
           audioBitsPerSecond={128000}
           height={100}
           strokeColor="rgb(0, 150, 239)"
