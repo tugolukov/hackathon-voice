@@ -35,22 +35,27 @@ namespace hackathonvoice.API.Controllers
         {
             return View("../Administration/Administration");
         }
-
-        [HttpGet("send")]
-        public async Task<HttpResponseMessage> SendFlacToAPI()
+        
+        [HttpPost("api/send")]
+        public async Task<string> SendFlacToAPI()
         {
+            var request = Request;
+
+            var file = request.Form.Files.FirstOrDefault();
+            
+            
             var apiSetttings = new SpeechKitClientOptions("7102e72c-3cc9-4f92-8b38-81dd97c93075", "HackathonVoice", Guid.NewGuid(), "device");
 
             using (var client = new SpeechKitClient(apiSetttings))
             {
-                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.Wav, RecognitionLanguage.Russian);
+                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.WebM, RecognitionLanguage.Russian);
                 try
                 {
-                    var kek = System.IO.File.OpenRead("Vocaroo_s1Ri4QzSnl1i.wav");
-                    var result = await client.SpeechToTextAsync(speechRecognitionOptions, kek, CancellationToken.None).ConfigureAwait(false);
+                    var content = file.OpenReadStream();
+                    var result = await client.SpeechToTextAsync(speechRecognitionOptions, content, CancellationToken.None).ConfigureAwait(false);
                     if (result.TransportStatus != TransportStatus.Ok || result.StatusCode != HttpStatusCode.OK)
                     {
-                        Console.WriteLine(result.Result.Variants.First().Text);
+                        return Response.StatusCode.ToString();
                         //Handle network and request parameters error
                     }
 
@@ -59,7 +64,7 @@ namespace hackathonvoice.API.Controllers
                         //Unable to recognize speech
                     }
 
-                    var utterances = result.Result.Variants;
+                    return Response.StatusCode.ToString();
                     //Use recognition results
 
                 }
