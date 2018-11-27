@@ -9,32 +9,33 @@ const CartPatient = ({ resText, actions }) => (
     <h1>Карта пациента</h1>
     <div className="cardPatient">
       <p>
-        Пациент:
-        {resText.patientModel.fullName}
+        <span className="card-title">Пациент:</span>
+        <span className="card-info">{resText.patientModel.fullName}</span>
       </p>
       <p>
-        Жалобы:
-        {resText.visitModel.description}
+        <span className="card-title">Жалобы:</span>
+        <span className="card-info">{resText.visitModel.description}</span>
       </p>
       <p>
-        Полис:
-        {resText.patientModel.policy}
+        <span className="card-title">Полис:</span>
+        <span className="card-info">{resText.patientModel.policy}</span>
       </p>
       <hr />
-      <p>Врач: Иванов Иван</p>
       <p>
-        Поставленный диагноз:
-        { resText.visitModel.diagnoses }
+        <span className="card-title">Врач:</span>
+        <span className="card-info">Иванов Иван</span>
       </p>
       <p>
-        Заключение:
-        { resText.visitModel.recipe }
+        <span className="card-title">Поставленный диагноз:</span>
+        <span className="card-info">{ resText.visitModel.diagnoses }</span>
+      </p>
+      <p>
+        <span className="card-title">Заключение:</span>
+        <span className="card-info">{ resText.visitModel.recipe }</span>
       </p>
     </div>
     <div className="actions-button">
-      <Button onClick={actions.redirect} variant="outlined" color="primary">Назад</Button>
-      <Button onClick={() => console.log('Кнопка Редактировать')} variant="outlined" color="primary">Редактировать</Button>
-      <Button onClick={() => console.log('Кнопка Принять')} variant="outlined" color="primary">Принять</Button>
+      <Button onClick={actions.redirect} variant="contained" color="primary">Следующий пациент</Button>
     </div>
   </div>
 );
