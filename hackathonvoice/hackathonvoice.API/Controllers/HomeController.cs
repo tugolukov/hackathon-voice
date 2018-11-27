@@ -55,7 +55,7 @@ namespace hackathonvoice.API.Controllers
                     var result = await client.SpeechToTextAsync(speechRecognitionOptions, content, CancellationToken.None).ConfigureAwait(false);
                     if (result.TransportStatus != TransportStatus.Ok || result.StatusCode != HttpStatusCode.OK)
                     {
-                        return result.Result.Variants.First().Text;
+                        return Response.StatusCode.ToString();
                         //Handle network and request parameters error
                     }
 
@@ -64,7 +64,7 @@ namespace hackathonvoice.API.Controllers
                         //Unable to recognize speech
                     }
 
-                    return result.Result.Variants.First().Text;
+                    return Response.StatusCode.ToString();
                     //Use recognition results
 
                 }
