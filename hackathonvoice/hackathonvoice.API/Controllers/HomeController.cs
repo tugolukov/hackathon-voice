@@ -37,7 +37,7 @@ namespace hackathonvoice.API.Controllers
         }
         
         [HttpGet("send")]
-        public async Task<HttpResponseMessage> SendFlacToAPI()
+        public async Task<string> SendFlacToAPI()
         {
             var request = Request;
 
@@ -56,7 +56,7 @@ namespace hackathonvoice.API.Controllers
                     var result = await client.SpeechToTextAsync(speechRecognitionOptions, content, CancellationToken.None).ConfigureAwait(false);
                     if (result.TransportStatus != TransportStatus.Ok || result.StatusCode != HttpStatusCode.OK)
                     {
-                        Console.WriteLine(result.Result.Variants.First().Text);
+                        return result.Result.Variants.First().Text;
                         //Handle network and request parameters error
                     }
 
