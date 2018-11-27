@@ -152,7 +152,7 @@ module.exports = (env) => {
       },
       plugins: [
         new webpack.HashedModuleIdsPlugin(),
-        new FaviconsWebpackPlugin('./src/images/favicon.png'),
+        new FaviconsWebpackPlugin('./src/images/favicon.ico'),
       ],
       optimization: {
         minimize: true,

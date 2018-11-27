@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hackathonvoice.Domain.Interfaces;
+using hackathonvoice.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace hackathonvoice.Domain
@@ -7,6 +8,9 @@ namespace hackathonvoice.Domain
     {
         public static IServiceCollection AddDomain(this IServiceCollection services)
         {
+            services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddScoped<IParserService, ParserService>();
+            
             return services;
         }
         

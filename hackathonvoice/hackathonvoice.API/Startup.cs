@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using hackathonvoice.Database;
+using hackathonvoice.Domain;
+using hackathonvoice.Domain.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace hackathonvoice.API
 {
@@ -29,9 +31,30 @@ namespace hackathonvoice.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            
+            services.AddAutoMapper(a =>
+            {
+                Mapper.Initialize(b => b.AddProfile(typeof(MappingProfile)));
+            });
+            
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1", 
+                    Title = "HackathonVoice API documentation"
+                });
+            });
+            
+            services.AddEntityFrameworkNpgsql().AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    c => c.MigrationsAssembly("Library.Web"));
+            });
 
-
-
+            services.AddDomain();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -45,9 +68,10 @@ namespace hackathonvoice.API
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//                app.UseHsts();
             }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "HackathonVoice API v1"); });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

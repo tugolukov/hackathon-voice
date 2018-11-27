@@ -1,0 +1,68 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - 5430:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: 123456
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+    ports:
+      - 61714:80
+  webdav:
+    image: roflmao/docker-webdav
+    restart: always
+    volumes:
+      - filestore-data:/var/www
+    environment:
+      RABBITMQ_DEFAULT_USER: alphard
+      RABBITMQ_DEFAULT_PASS: astral
+      RABBITMQ_DEFAULT_VHOST: '/'
+    ports:
+      - 80:80
+      - 57080:80
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2048m"
+        max-file: "3"
+
+  rabbit_node_1:
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: alphard
+      RABBITMQ_DEFAULT_PASS: astral
+      RABBITMQ_DEFAULT_VHOST: '/'
+    networks:
+      - default
+    hostname: rabbit_node_1
+    image: rabbitmq:3-management
+    ports:
+      - 15673:15672
+      - 5673:5672
+    volumes:
+      - rabbit1:/var/lib/rabbitmq
+
+volumes:
+  pgdata:
+    driver: local
+  filestore-data:
+    driver: local
+  rabbit1:
+    driver: local
