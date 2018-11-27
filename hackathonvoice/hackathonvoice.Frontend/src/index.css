@@ -67,7 +67,6 @@ body {
 }
 
 .auth-page {
-    background: svg-load('./images/background.svg') no-repeat;
     background-size: contain;
     min-height: 100%;
     display: flex;

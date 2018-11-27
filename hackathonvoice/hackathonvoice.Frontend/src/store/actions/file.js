@@ -24,3 +24,9 @@ export function loadFile(file) {
     return null;
   };
 }
+
+export function redirect() {
+  return async (dispatch, getState, api) => {
+    dispatch(push('/'));
+  };
+}
