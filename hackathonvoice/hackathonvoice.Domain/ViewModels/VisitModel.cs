@@ -18,10 +18,5 @@ namespace hackathonvoice.Domain.ViewModels
         /// Назначенные лекарства
         /// </summary>
         public string Recipe { get; set; }
-        
-        /// <summary>
-        /// Уникальный идентификатор пациента
-        /// </summary>
-        public Guid GuidPatient { get; set; }
     }
 }
