@@ -10,7 +10,7 @@ export function loadFile(file) {
     try {
       const body = new FormData();
 
-      body.append('file', file, 'rec');
+      body.append('file', file.blob);
       const data = {};
 
       body.forEach((value, key) => {
