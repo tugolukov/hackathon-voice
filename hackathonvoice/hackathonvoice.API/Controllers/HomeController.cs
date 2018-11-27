@@ -48,7 +48,7 @@ namespace hackathonvoice.API.Controllers
 
             using (var client = new SpeechKitClient(apiSetttings))
             {
-                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.Wav, RecognitionLanguage.Russian);
+                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.WebM, RecognitionLanguage.Russian);
                 try
                 {
                     var content = file.OpenReadStream();
@@ -64,7 +64,7 @@ namespace hackathonvoice.API.Controllers
                         //Unable to recognize speech
                     }
 
-                    var utterances = result.Result.Variants;
+                    return result.Result.Variants.First().Text;
                     //Use recognition results
 
                 }
