@@ -5,9 +5,568 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: rgb(33, 33, 33);
+    color: #ffffff;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.record {
+    color: #cccccc;
+    width: 200px;
+    height: 200px;
+}
+
+.record:hover {
+    background-color: #51a351;
+}
+
+.record-true {
+    background-color: #b45859;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 50px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+}
+
+.record-false {
+    background-color: #03a0f1;
+}
+
+.rec-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-page {
+    background: svg-load('./images/background.svg') no-repeat;
+    background-size: contain;
+    min-height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+}
+
+.auth-form {
+    margin-right: 150px;
+    width: 375px;
+}
+
+.auth-desc {
+    font-size: 20px;
+    line-height: 23px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.submit-auth {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 2em;
+    font-weight: 500;
+}
+
+/*HEADER*/
+
+.main-header {
+    flex-grow: 1;
+}
+
+.header-shadow{
+    box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.08);
+}
+
+.main-header header {
+    box-shadow: none;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #48c8ff6e;
+    z-index: 100;
+    position: fixed;
+}
+
+.exit-button-icon {
+    margin-right: 8px;
+}
+.profile-button-icon {
+    margin-right: 8px;
+}
+
+.header-menu ul {
+    padding: 0;
+}
+
+.main-header header div {
+    height: 90px;
+    margin-top: 18px;
+}
+
+.main-header .header-logo {
+    flex-grow: 1;
+    height: auto;
+    margin-left: 32px;
+    margin-bottom: 38px;
+}
+
+.main-header .header-user-info {
+    display: flex;
+    height: auto;
+    margin-right: 70px;
+    margin-bottom: 39px;
+}
+
+.main-header .header-user-info .user {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+    margin-right: 22px;
+}
+
+.main-header .header-user-info .user-name {
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: normal;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-header .header-user-info .user-position {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 7px;
+
+}
+
+.main-header .header-user-info .avatar-icon {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+}
+
+/*------------------------------------------------------*/
+
+/*Основной контент страницы загрузки снимков*/
+
+.main-content-download {
+    flex-grow: 1;
+    display: flex;
+    margin-left: 60px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 70px;
+    padding-top: 110px
+}
+
+.main-content-download .dropzone-container {
+    margin-top: 12px;
+    margin-left: 34px;
+}
+
+.main-content-download .dropzone {
+    cursor: pointer;
+    background-color: rgba(72, 200, 255, 0.03);
+    width: 682px;
+    height: 662px;
+    margin-top: 20px;
+    border: 1px dashed #48C8FF;
+    border-radius: 5px;
+    border-width: 2px;
+}
+
+.main-content-download .dropzone-container .dropzone .dropzone-content {
+    text-align: center;
+    position: relative;
+    top: 295px;
+}
+
+.main-content-download .dropzone-container .dropzone .snapshot-list p {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    color: #48C8FF;
+    text-transform: uppercase;
+}
+.main-content-download .dropzone .dropzone-content p {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    color: #48C8FF;
+    text-transform: uppercase;
+}
+
+.main-content-download .download-info {
+    margin-left: 60px;
+    width: 465px;
+    margin-right: 72px;
+}
+
+.main-content-download .download-info h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 40px;
+}
+
+.main-content-download .download-info ol {
+    padding: 0;
+    counter-reset: myCounter;
+}
+
+.main-content-download .download-info ol li {
+    list-style: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.main-content-download .download-info ol li:before {
+    counter-increment: myCounter;
+    content:counter(myCounter);
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: rgb(0, 150, 239);
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    margin: 31px 4px;
+    line-height: 49px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+}
+
+.main-content-download .download-info ol li:after {
+    content:'';
+    border-right: 2px dotted rgb(0, 150, 239);
+    display: inline-flex;
+    margin: 88px 0px -21px -28px;
+}
+.main-content-download .download-info ol li:last-child:after {
+    content:'';
+    border: none;
+}
+
+.main-content-download .download-info ol li .step-text {
+    display: inline-flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 18px;
+    margin-left: 67px;
+    position: absolute;
+    left: 13px;
+    top: 20px;
+    min-width: 370px;
+}
+
+.main-content-download .download-info .submit-file {
+    margin-top: 53px;
+    height: 68px;
+
+}
+.main-content-download .download-info .submit-file span{
+    font-size: 20px;
+    line-height: 2em;
+    font-weight: 500;
+}
+
+
+/*------------------------------------------------------*/
+
+/*DropZone*/
+
+.dropzone .snapshot-list {
+    display: flex;
+    width: 305px;
+    height: 295px;
+    border: 1px solid #48C8FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 12px ;
+    flex-flow: column;
+    position: relative;
+}
+.dropzone ul {
+    display: flex;
+    padding-left: 0px;
+    margin: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.dropzone ul .snapshot-list .delete-file-icon{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.dropzone ul .snapshot-list .upload-file-success-message{
+    position: absolute;
+    top: 260px;
+    left: 14px;
+    margin-left: 11px;
+    vertical-align: top;
+}
+
+.dropzone ul .snapshot-list .upload-file-success-message span{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    color: #48C8FF;
+    margin-left: 11px;
+    vertical-align: top;
+}
+
+/*------------------------------------------------------*/
+
+
+/*Страница результатов*/
+
+.main-medical-opinion-container{
+    display: flex;
+    height: 100vh;
+    padding-top: 110px;
+}
+
+/*Информация о пациенте*/
+
+.main-medical-opinion-container .patient-info-container {
+    min-width: 313px;
+    background-color: #FFFFFF;
+    box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    height: 100vh;
+    min-height: 500px;
+    display: inline-flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+}
+.main-medical-opinion-container .patient-info-container .patient-info-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 36px;
+    padding-right: 57px;
+}
+
+.main-medical-opinion-container .patient-info-container .patient-info-header span{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 40px;
+    margin-left: 15px;
+}
+
+.main-medical-opinion-container .patient-info-container ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    padding-left: 17px;
+}
+
+.main-medical-opinion-container .patient-info-container ul li{
+    padding-top: 40px;
+    padding-left: 16px;
+}
+
+.main-medical-opinion-container .patient-info-container ul li .patient-info-lable{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 16px;
+    color: #48C8FF;
+}
+
+.main-medical-opinion-container .patient-info-container ul li .patient-info{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    color: #000000;
+    display: block;
+    margin-top: 3px;
+}
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer {
+    margin-bottom: 54px;
+}
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer .reset{
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 2em;
+    font-weight: 500;
+}
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer .reset svg{
+    margin-right: 10px;
+}
+
+
+/*-------------------------------------------------------*/
+
+/* Блок с dicom снимками */
+
+.dicom-item-img {
+    width: 250px;
+}
+.main-medical-opinion-container .dicom-result-block {
+    display: flex;
+    margin-left: 346px;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 475px;
+    height: 100%;
+    overflow: auto;
+    justify-content: center;
+}
+
+.main-medical-opinion-container .dicom-result-block .dicom-items {
+    display: flex;
+    margin-left: 24px;
+    border-radius: 5px;
+    margin-top: 45px;
+}
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-right{
+    display: inline-flex;
+    flex-flow: column;
+}
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-left{
+    display: inline-flex;
+    flex-flow: column;
+    margin-left: 1px;
+}
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-right span {
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    padding-bottom: 8px;
+}
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-left span {
+    display: flex;
+    justify-content: flex-end;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    padding-bottom: 8px;
+}
+
+/*-------------------------------------------------------*/
+
+/* Заключения врача */
+
+.main-medical-opinion-container .conclusion-info {
+    display: flex;
+    margin-left: 24px;
+    margin-top: 42px;
+    flex-flow: column;
+}
+
+.main-medical-opinion-container .conclusion-info .conclusion-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 20px;
+    color: #48C8FF;
+}
+
+.main-medical-opinion-container .conclusion-info .conclusion-text {
+    display: flex;
+    height: 206px;
+    max-width: 456px;
+    border: 1px solid #48C8FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.main-medical-opinion-container .conclusion-info .next-patient{
+    margin-bottom: 20px;
+    height: 50px;
+    width: 455px;
+}
+
+.main-medical-opinion-container .conclusion-info .next-patient span{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 16px;
+    text-align: center;
+}
+.main-medical-opinion-container .conclusion-info .next-patient svg{
+    margin-left: 10px;
+}
+
+/*-------------------------------------------------------*/
+
+/* Квадранты */
+
+
+
+/*-------------------------------------------------------*/
+
+
+/*------------------------------------------------------*/
