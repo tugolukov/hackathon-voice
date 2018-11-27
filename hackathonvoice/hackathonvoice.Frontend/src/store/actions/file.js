@@ -10,8 +10,13 @@ export function loadFile(file) {
     try {
       const body = new FormData();
 
-      body.append('file', file, file.name);
-      console.log('FILE_BEFORE', body);
+      body.append('file', file, 'rec');
+      const data = {};
+
+      body.forEach((value, key) => {
+        data[key] = value;
+      });
+      console.log(data);
 
       dispatch({ type: LOAD_FILE_REQUEST });
       const res = await api.post('send', body);
