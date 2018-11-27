@@ -1,4 +1,4 @@
-using System.IO;
+/*using System.IO;
 using System.Threading.Tasks;
 using ITCC.YandexSpeechKitClient.Enums;
 using Microsoft.AspNetCore.Http;
@@ -23,4 +23,4 @@ namespace hackathonvoice.Domain.Interfaces
         /// <returns></returns>
         Task<string> StreamToText(Stream audiostream, RecognitionAudioFormat format);
     }
-}
+}*/
