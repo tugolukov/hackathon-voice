@@ -30,7 +30,6 @@ module.exports = (env) => {
       filename: '[name].[chunkhash].js',
       publicPath: '/',
     },
-    watch: true,
     module: {
       rules: [
         {

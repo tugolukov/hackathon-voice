@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","sources":["webpack:///./src/index.css"],"sourcesContent":["html,\nbody,\n#root {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  background-color: #ffffff; }\n\nbody {\n  font-family: 'Roboto', sans-serif; }\n"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;","sourceRoot":""}
