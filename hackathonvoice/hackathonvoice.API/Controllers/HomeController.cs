@@ -42,7 +42,6 @@ namespace hackathonvoice.API.Controllers
             var request = Request;
 
             var file = request.Form.Files.FirstOrDefault();
-            var fileName = file.FileName;
             
             
             var apiSetttings = new SpeechKitClientOptions("7102e72c-3cc9-4f92-8b38-81dd97c93075", "HackathonVoice", Guid.NewGuid(), "device");
