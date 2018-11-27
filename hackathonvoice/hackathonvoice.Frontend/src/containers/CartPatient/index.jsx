@@ -14,9 +14,11 @@ const CartPatient = ({ resText }) => (
       <hr />
       <p>Заключение: </p>
     </div>
-    <Button disabled>Назад</Button>
-    <Button disabled>Редактировать</Button>
-    <Button disabled>Принять</Button>
+    <div className="actions-button">
+      <Button onClick={() => console.log('Кнопка Назад')} variant="outlined" color="primary">Назад</Button>
+      <Button onClick={() => console.log('Кнопка Редактировать')} variant="outlined" color="primary">Редактировать</Button>
+      <Button onClick={() => console.log('Кнопка Принять')} variant="outlined" color="primary">Принять</Button>
+    </div>
   </div>
 );
 
