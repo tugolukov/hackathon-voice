@@ -9,6 +9,8 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using hackathonvoice.Domain.Interfaces;
+using hackathonvoice.Domain.ViewModels;
 using ITCC.YandexSpeechKitClient;
 using ITCC.YandexSpeechKitClient.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +21,11 @@ namespace hackathonvoice.API.Controllers
     public class HomeController : Controller
     {
         private readonly HttpClient _client;
+        private readonly IParserService _parserService;
 
-        public HomeController()
+        public HomeController(IParserService parserService)
         {
+            _parserService = parserService;
             _client = new HttpClient();
             _client.BaseAddress =
                 new Uri(
@@ -37,12 +41,11 @@ namespace hackathonvoice.API.Controllers
         }
         
         [HttpPost("api/send")]
-        public async Task<string> SendFlacToAPI()
+        public async Task<ReportModel> SendFlacToAPI()
         {
             var request = Request;
 
             var file = request.Form.Files.FirstOrDefault();
-            
             
             var apiSetttings = new SpeechKitClientOptions("7102e72c-3cc9-4f92-8b38-81dd97c93075", "HackathonVoice", Guid.NewGuid(), "device");
 
@@ -53,9 +56,20 @@ namespace hackathonvoice.API.Controllers
                 {
                     var content = file.OpenReadStream();
                     var result = await client.SpeechToTextAsync(speechRecognitionOptions, content, CancellationToken.None).ConfigureAwait(false);
+
+                    if (result.StatusCode == HttpStatusCode.OK)
+                    {
+                        var count = result.Result.Variants.Count - 1;
+                        Random rnd = new Random(); 
+                        int value = rnd.Next(0, count);
+
+                        var model = await _parserService.TextToCard(result.Result.Variants[value].Text);
+                        return model;
+                    }
+                    
                     if (result.TransportStatus != TransportStatus.Ok || result.StatusCode != HttpStatusCode.OK)
                     {
-                        return Response.StatusCode.ToString();
+                        return null;
                         //Handle network and request parameters error
                     }
 
@@ -64,7 +78,7 @@ namespace hackathonvoice.API.Controllers
                         //Unable to recognize speech
                     }
 
-                    return Response.StatusCode.ToString();
+                    return null;
                     //Use recognition results
 
                 }
