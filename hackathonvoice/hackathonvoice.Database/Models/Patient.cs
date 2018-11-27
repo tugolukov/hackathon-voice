@@ -21,8 +21,13 @@ namespace hackathonvoice.Database.Models
         public string FullName { get; set; }
 
         /// <summary>
-        /// Диагнозы
+        /// Полис
         /// </summary>
-        public virtual IList<Guid> Diagnoses { get; set; }
+        public string Poliсy { get; set; }
+ 
+        /// <summary>
+        /// Визиты
+        /// </summary>
+        public virtual IList<Visit> Visits { get; set; }
     }
 }
