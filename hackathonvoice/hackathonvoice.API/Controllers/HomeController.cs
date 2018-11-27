@@ -51,7 +51,7 @@ namespace hackathonvoice.API.Controllers
 
             using (var client = new SpeechKitClient(apiSetttings))
             {
-                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.Mpeg3, RecognitionLanguage.Russian);
+                var speechRecognitionOptions = new SpeechRecognitionOptions(SpeechModel.Queries, RecognitionAudioFormat.WebM, RecognitionLanguage.Russian);
                 try
                 {
                     var content = file.OpenReadStream();
@@ -59,11 +59,7 @@ namespace hackathonvoice.API.Controllers
 
                     if (result.StatusCode == HttpStatusCode.OK)
                     {
-                        var count = result.Result.Variants.Count - 1;
-                        Random rnd = new Random(); 
-                        int value = rnd.Next(0, count);
-
-                        var model = await _parserService.TextToCard(result.Result.Variants[value].Text);
+                        var model = await _parserService.TextToCard(result.Result.Variants.First().Text);
                         return model;
                     }
                     
