@@ -36,7 +36,7 @@ namespace hackathonvoice.API.Controllers
             return View("../Administration/Administration");
         }
         
-        [HttpGet("send")]
+        [HttpGet("api/send")]
         public async Task<string> SendFlacToAPI()
         {
             var request = Request;
