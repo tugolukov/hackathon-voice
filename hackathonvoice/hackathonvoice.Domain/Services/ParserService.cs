@@ -9,21 +9,6 @@ using hackathonvoice.Domain.ViewModels;
 
 namespace hackathonvoice.Domain.Services
 {
-    public class Litera
-    {
-        public bool IsKey { get; set; }
-        public string Text { get; set; }
-
-        public Litera()
-        {}
-        
-        public Litera(bool isKey, string text)
-        {
-            IsKey = isKey;
-            Text = text;
-        }
-    }
-
     public class ParserService : IParserService
     {
         public async Task<ReportModel> TextToCard(string text)
@@ -35,22 +20,17 @@ namespace hackathonvoice.Domain.Services
             
             //жалобы
             var descriptions = parseModel.GetDescription();
-            
             //диагнозы
             var diagnoses = parseModel.GetDiagnoses();
-            
             //рецепты
             var recipe = parseModel.GetRecipe();
-            
             //имя пациента
             var name = parseModel.GetName();
-            
             //полис
             var policy = parseModel.GetPolicy();
 
             // устанавливаем ключевые слова
-            List<string> keys = new List<string>();
-            keys = parseModel.GetAllKeys();
+            List<string> keys = parseModel.GetAllKeys();
             
             // Присваиваем словам ключи
             List<Litera> phrases = new List<Litera>();

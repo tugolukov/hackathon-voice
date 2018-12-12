@@ -4,7 +4,7 @@ namespace hackathonvoice.Domain.ParserModels
 {
     public class MedicalTherapist
     {
-        //жалоб
+        //жалобы
         private List<string> _descriptions = new List<string>()
         {
             "жалоб",

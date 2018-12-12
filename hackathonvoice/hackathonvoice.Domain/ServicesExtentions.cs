@@ -10,6 +10,7 @@ namespace hackathonvoice.Domain
         {
             services.AddScoped<IDatabaseService, DatabaseService>();
             services.AddScoped<IParserService, ParserService>();
+            services.AddScoped<ISpeechService, YandexSpeechService>();
             
             return services;
         }
