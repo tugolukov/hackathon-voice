@@ -13,25 +13,67 @@ namespace hackathonvoice.Domain.Services
     {
         public async Task<ReportModel> TextToCard(string text)
         {
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            Dictionary<int, string> nextdictionary = new Dictionary<int, string>();
+
             // делим текст на слова
             string[] words = text.Split(' ');
-            
-            MedicalTherapist parseModel = new MedicalTherapist();
-            
-            //жалобы
-            var descriptions = parseModel.GetDescription();
+
+            Dictionary<int, List<int>> keywords = new Dictionary<int, List<int>>();
+
+            //жалоб
+            List<string> descriptions = new List<string>()
+            {
+                "жалоб",
+                "жалует",
+                "беспоко"
+            };
             //диагнозы
-            var diagnoses = parseModel.GetDiagnoses();
+            List<string> diagnoses = new List<string>()
+            {
+                "диагноз",
+                "вердикт",
+                "заключ"
+            };
             //рецепты
-            var recipe = parseModel.GetRecipe();
-            //имя пациента
-            var name = parseModel.GetName();
-            //полис
-            var policy = parseModel.GetPolicy();
+            List<string> recipe = new List<string>()
+            {
+                "назнач",
+                "лекарст",
+                "принима",
+                "лечени"
+            };
+            List<string> name = new List<string>()
+            {
+                "имя",
+                "зовут",
+                "пациент"
+            };
+            List<string> policy = new List<string>()
+            {
+                "номер",
+                "полис"
+            };
 
             // устанавливаем ключевые слова
-            List<string> keys = parseModel.GetAllKeys();
-            
+            List<string> keys = new List<string>();
+
+            List<string> allkeys = new List<string>();
+            allkeys.AddRange(name);
+            allkeys.AddRange(policy);
+            allkeys.AddRange(descriptions);
+            allkeys.AddRange(diagnoses);
+            allkeys.AddRange(recipe);
+
+
+            foreach (var allkey in allkeys)
+            {
+                if (text.Contains(allkey))
+                {
+                    keys.Add(allkey);
+                }
+            }
+
             // Присваиваем словам ключи
             List<Litera> phrases = new List<Litera>();
             foreach (var word in words)
@@ -40,7 +82,11 @@ namespace hackathonvoice.Domain.Services
 
                 if (keys.Count == 0)
                 {
-                    phrases.Add(new Litera(false, word));
+                    phrases.Add(new Litera()
+                    {
+                        IsKey = false,
+                        Text = word
+                    });
                 }
 
                 foreach (var key in keys)
@@ -49,22 +95,33 @@ namespace hackathonvoice.Domain.Services
                     {
                         if (check)
                         {
-                            phrases.Add(new Litera(true, word));
+                            phrases.Add(new Litera()
+                            {
+                                IsKey = true,
+                                Text = word
+                            });
                             keys.Remove(key);
                             break;
                         }
+
                         check = false;
                     }
                     else
                     {
                         if (check)
                         {
-                            phrases.Add(new Litera(false, word));
+                            phrases.Add(new Litera()
+                            {
+                                IsKey = false,
+                                Text = word
+                            });
                             break;
                         }
+
                         check = false;
                     }
                 }
+
                 check = true;
             }
 
@@ -102,6 +159,8 @@ namespace hackathonvoice.Domain.Services
                         }
                     }
                 }
+
+
             }
 
             // Делаем красивую коллекцию
