@@ -8,7 +8,6 @@ namespace hackathonvoice.Database
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {}
 
         public DbSet<Patient> Patients { get; set; }
-        
         public DbSet<Visit> Visits { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

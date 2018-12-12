@@ -4,18 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using hackathonvoice.Domain.Interfaces;
+using hackathonvoice.Domain.ParserModels;
 using hackathonvoice.Domain.ViewModels;
 
 namespace hackathonvoice.Domain.Services
 {
-    public class Litera
-    {
-        public bool IsKey { get; set; }
-        public string Text { get; set; }
-    }
-
     public class ParserService : IParserService
     {
+        private readonly IDatabaseService _databaseService;
+
+        public ParserService(IDatabaseService databaseService)
+        {
+            _databaseService = databaseService;
+        }
+
         public async Task<ReportModel> TextToCard(string text)
         {
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
@@ -230,6 +232,9 @@ namespace hackathonvoice.Domain.Services
                 }
             }
 
+            visit.PatientGuid = await _databaseService.CreatePatient(patient);
+            var visitGuid = await _databaseService.CreateVisit(visit);
+            
             report.PatientModel = patient;
             report.VisitModel = visit;
 

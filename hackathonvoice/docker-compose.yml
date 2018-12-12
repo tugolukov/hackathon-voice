@@ -1,0 +1,57 @@
+version: "3"
+
+volumes:
+  database:
+    driver: local
+
+networks:
+  proxy:
+    external: true
+
+services:
+  library-nginx:
+    image: vox-nginx:work
+    build:
+      context: ./Nginx
+      args:
+      - Environment=Work
+    restart: always
+    deploy:
+      labels:
+      - traefik.backend=vox
+      - traefik.frontend.rule=HostRegexp:voxsonator.ru,{subdomain:[a-z]+}.voxsonator.ru
+      - traefik.docker.network=proxy
+      - traefik.port=80
+    networks:
+    - default
+    - proxy
+    depends_on:
+    - vox
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+    - 5430:5432
+    volumes:
+    - database:/var/lib/postgresql/data
+  vox:
+    image: vox:work
+    build:
+      context: ./hackathonvoice.API
+      args:
+        Environment: Work
+    restart: always
+    depends_on:
+    - database
+    networks:
+    - proxy
+    - default
+    deploy:
+      labels:
+      - "com.docker.stack.image=vox:work"
+      - "com.docker.stack.namespace=vox"
+    ports:
+    - 80:5000
