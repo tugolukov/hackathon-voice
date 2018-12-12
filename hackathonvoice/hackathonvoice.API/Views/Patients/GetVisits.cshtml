@@ -1,0 +1,48 @@
+@model List<hackathonvoice.Database.Models.Visit>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a class="btn btn-light btn-sm btn-block" role="button" href="http://voxsonator.ru">
+                <i class="fa fa-info fa-lg " aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="col-8">
+            <h2 align="center">@ViewBag.patientName</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="table-responsive">
+        <table id="patients" class="table table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Жалобы
+                </th>
+                <th>
+                    Диагноз
+                </th>
+                <th>
+                    Назначенные лекарства
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var visit in Model)
+            {
+                <tr>
+
+                    <td>@visit.Description</td>
+                    <td>@visit.Diagnoses</td>
+                    <td>@visit.Recipe</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

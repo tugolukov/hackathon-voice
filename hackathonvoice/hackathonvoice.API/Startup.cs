@@ -50,12 +50,12 @@ namespace hackathonvoice.API
             {
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection"),
-                    c => c.MigrationsAssembly("Library.Web"));
+                    c => c.MigrationsAssembly("hackathonvoice.API"));
             });
 
             services.AddDomain();
             
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

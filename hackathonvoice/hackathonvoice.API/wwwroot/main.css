@@ -1,0 +1,653 @@
+@charset "UTF-8";
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  color: #ffffff; }
+
+.main-content {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 2px 20px 0 #eeff60, 0 2px 10px 0 red; }
+
+.actions-button {
+  display: flex;
+  justify-content: flex-end; }
+
+.card-btn {
+  background-color: #03a0f1;
+  color: #fff; }
+
+body {
+  font-family: 'Roboto', sans-serif; }
+
+.record {
+  color: #cccccc;
+  width: 200px;
+  height: 200px; }
+
+.record:hover {
+  background-color: #51a351; }
+
+.record-true {
+  background-color: #b45859;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite; }
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4); }
+  70% {
+    box-shadow: 0 0 0 50px rgba(204, 169, 44, 0); }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0); } }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4); }
+  70% {
+    box-shadow: 0 0 0 50px rgba(204, 169, 44, 0); }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0); } }
+
+.record-false {
+  background-color: #03a0f1; }
+
+.rec-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.footer {
+  margin: 20px 0;
+  position: unset;
+  bottom: 0;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  font-weight: 500;
+  color: #4c4c4c; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4c4c4c; }
+
+.card-info {
+  margin-left: 10px;
+  font-size: 16px; }
+
+.card-title {
+  font-size: 20px;
+  font-weight: 500; }
+
+.auth-page {
+  background-size: contain;
+  min-height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+.logo {
+  position: absolute;
+  top: 50px;
+  left: 30px; }
+
+.auth-form {
+  margin-right: 150px;
+  width: 375px; }
+
+.auth-desc {
+  font-size: 20px;
+  line-height: 23px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left; }
+
+.submit-auth {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 2em;
+  font-weight: 500; }
+
+/*HEADER*/
+.main-header {
+  flex-grow: 1; }
+
+.header-shadow {
+  box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.08); }
+
+.main-header header {
+  box-shadow: none;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #48c8ff6e;
+  z-index: 100;
+  position: fixed; }
+
+.exit-button-icon {
+  margin-right: 8px; }
+
+.profile-button-icon {
+  margin-right: 8px; }
+
+.header-menu ul {
+  padding: 0; }
+
+.main-header header div {
+  height: 90px;
+  margin-top: 18px; }
+
+.main-header .header-logo {
+  flex-grow: 1;
+  height: auto;
+  margin-left: 32px;
+  margin-bottom: 38px; }
+
+.main-header .header-user-info {
+  display: flex;
+  height: auto;
+  margin-right: 70px;
+  margin-bottom: 39px; }
+
+.main-header .header-user-info .user {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  margin: 0;
+  margin-right: 22px; }
+
+.main-header .header-user-info .user-name {
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: normal;
+  display: flex;
+  justify-content: flex-end; }
+
+.main-header .header-user-info .user-position {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 7px; }
+
+.main-header .header-user-info .avatar-icon {
+  position: absolute;
+  top: 11px;
+  left: 11px; }
+
+/*------------------------------------------------------*/
+/*Основной контент страницы загрузки снимков*/
+.main-content-download {
+  flex-grow: 1;
+  display: flex;
+  margin-left: 60px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+  padding-top: 110px; }
+
+.main-content-download .dropzone-container {
+  margin-top: 12px;
+  margin-left: 34px; }
+
+.main-content-download .dropzone {
+  cursor: pointer;
+  background-color: rgba(72, 200, 255, 0.03);
+  width: 682px;
+  height: 662px;
+  margin-top: 20px;
+  border: 1px dashed #48C8FF;
+  border-radius: 5px;
+  border-width: 2px; }
+
+.main-content-download .dropzone-container .dropzone .dropzone-content {
+  text-align: center;
+  position: relative;
+  top: 295px; }
+
+.main-content-download .dropzone-container .dropzone .snapshot-list p {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  color: #48C8FF;
+  text-transform: uppercase; }
+
+.main-content-download .dropzone .dropzone-content p {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  color: #48C8FF;
+  text-transform: uppercase; }
+
+.main-content-download .download-info {
+  margin-left: 60px;
+  width: 465px;
+  margin-right: 72px; }
+
+.main-content-download .download-info h2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 40px; }
+
+.main-content-download .download-info ol {
+  padding: 0;
+  counter-reset: myCounter; }
+
+.main-content-download .download-info ol li {
+  list-style: none;
+  position: relative;
+  display: flex;
+  width: 100%; }
+
+.main-content-download .download-info ol li:before {
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #0096ef;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  margin: 31px 4px;
+  line-height: 49px;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px; }
+
+.main-content-download .download-info ol li:after {
+  content: '';
+  border-right: 2px dotted #0096ef;
+  display: inline-flex;
+  margin: 88px 0px -21px -28px; }
+
+.main-content-download .download-info ol li:last-child:after {
+  content: '';
+  border: none; }
+
+.main-content-download .download-info ol li .step-text {
+  display: inline-flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: 18px;
+  margin-left: 67px;
+  position: absolute;
+  left: 13px;
+  top: 20px;
+  min-width: 370px; }
+
+.main-content-download .download-info .submit-file {
+  margin-top: 53px;
+  height: 68px; }
+
+.main-content-download .download-info .submit-file span {
+  font-size: 20px;
+  line-height: 2em;
+  font-weight: 500; }
+
+/*------------------------------------------------------*/
+/*DropZone*/
+.dropzone .snapshot-list {
+  display: flex;
+  width: 305px;
+  height: 295px;
+  border: 1px solid #48C8FF;
+  box-sizing: border-box;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  margin: 12px;
+  flex-flow: column;
+  position: relative; }
+
+.dropzone ul {
+  display: flex;
+  padding-left: 0px;
+  margin: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap; }
+
+.dropzone ul .snapshot-list .delete-file-icon {
+  position: absolute;
+  top: 5px;
+  right: 10px; }
+
+.dropzone ul .snapshot-list .upload-file-success-message {
+  position: absolute;
+  top: 260px;
+  left: 14px;
+  margin-left: 11px;
+  vertical-align: top; }
+
+.dropzone ul .snapshot-list .upload-file-success-message span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  color: #48C8FF;
+  margin-left: 11px;
+  vertical-align: top; }
+
+/*------------------------------------------------------*/
+/*Страница результатов*/
+.main-medical-opinion-container {
+  display: flex;
+  height: 100vh;
+  padding-top: 110px; }
+
+/*Информация о пациенте*/
+.main-medical-opinion-container .patient-info-container {
+  min-width: 313px;
+  background-color: #FFFFFF;
+  box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  display: inline-flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed; }
+
+.main-medical-opinion-container .patient-info-container .patient-info-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 36px;
+  padding-right: 57px; }
+
+.main-medical-opinion-container .patient-info-container .patient-info-header span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 40px;
+  margin-left: 15px; }
+
+.main-medical-opinion-container .patient-info-container ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  padding-left: 17px; }
+
+.main-medical-opinion-container .patient-info-container ul li {
+  padding-top: 40px;
+  padding-left: 16px; }
+
+.main-medical-opinion-container .patient-info-container ul li .patient-info-lable {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 16px;
+  color: #48C8FF; }
+
+.main-medical-opinion-container .patient-info-container ul li .patient-info {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  color: #000000;
+  display: block;
+  margin-top: 3px; }
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer {
+  margin-bottom: 54px; }
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer .reset {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 2em;
+  font-weight: 500; }
+
+.main-medical-opinion-container .patient-info-container .patient-info-footer .reset svg {
+  margin-right: 10px; }
+
+/*-------------------------------------------------------*/
+/* Блок с dicom снимками */
+.dicom-item-img {
+  width: 250px; }
+
+.main-medical-opinion-container .dicom-result-block {
+  display: flex;
+  margin-left: 346px;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 475px;
+  height: 100%;
+  overflow: auto;
+  justify-content: center; }
+
+.main-medical-opinion-container .dicom-result-block .dicom-items {
+  display: flex;
+  margin-left: 24px;
+  border-radius: 5px;
+  margin-top: 45px; }
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-right {
+  display: inline-flex;
+  flex-flow: column; }
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-left {
+  display: inline-flex;
+  flex-flow: column;
+  margin-left: 1px; }
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-right span {
+  display: flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 20px;
+  padding-bottom: 8px; }
+
+.main-medical-opinion-container .dicom-result-block .dicom-item-left span {
+  display: flex;
+  justify-content: flex-end;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 20px;
+  padding-bottom: 8px; }
+
+/*-------------------------------------------------------*/
+/* Заключения врача */
+.main-medical-opinion-container .conclusion-info {
+  display: flex;
+  margin-left: 24px;
+  margin-top: 42px;
+  flex-flow: column; }
+
+.main-medical-opinion-container .conclusion-info .conclusion-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 20px;
+  color: #48C8FF; }
+
+.main-medical-opinion-container .conclusion-info .conclusion-text {
+  display: flex;
+  height: 206px;
+  max-width: 456px;
+  border: 1px solid #48C8FF;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
+  overflow: auto; }
+
+.main-medical-opinion-container .conclusion-info .next-patient {
+  margin-bottom: 20px;
+  height: 50px;
+  width: 455px; }
+
+.main-medical-opinion-container .conclusion-info .next-patient span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 16px;
+  text-align: center; }
+
+.main-medical-opinion-container .conclusion-info .next-patient svg {
+  margin-left: 10px; }
+
+/*-------------------------------------------------------*/
+/* Квадранты */
+/*-------------------------------------------------------*/
+/*------------------------------------------------------*/
+
+@charset "UTF-8";
+@font-face {
+  font-family: 'Notification';
+  src: url(/c0d3c94cd6112550c51d7d1ed13b9da1.eot);
+  src: url(/c0d3c94cd6112550c51d7d1ed13b9da1.eot) format("embedded-opentype"), url(/651771e1df95c807c99608188d0a4287.woff) format("woff"), url(/0b4ac1dc75df35e169b70d7719afe4cc.ttf) format("truetype"), url("<svg xmlns=\"http://www.w3.org/2000/svg\"><metadata>Generated by IcoMoon</metadata><defs><font id=\"notification\" horiz-adv-x=\"1024\"><font-face units-per-em=\"1024\" ascent=\"960\" descent=\"-64\"></font><missing-glyph horiz-adv-x=\"1024\"></missing><glyph unicode=\" \" d horiz-adv-x=\"512\"></glyph><glyph unicode=\"\" d=\"M656.571 309.714q0 14.857-10.857 25.714l-103.429 103.429 103.429 103.429q10.857 10.857 10.857 25.714 0 15.429-10.857 26.286l-51.429 51.429q-10.857 10.857-26.286 10.857-14.857 0-25.714-10.857l-103.429-103.429-103.429 103.429q-10.857 10.857-25.714 10.857-15.429 0-26.286-10.857l-51.429-51.429q-10.857-10.857-10.857-26.286 0-14.857 10.857-25.714l103.429-103.429-103.429-103.429q-10.857-10.857-10.857-25.714 0-15.429 10.857-26.286l51.429-51.429q10.857-10.857 26.286-10.857 14.857 0 25.714 10.857l103.429 103.429 103.429-103.429q10.857-10.857 25.714-10.857 15.429 0 26.286 10.857l51.429 51.429q10.857 10.857 10.857 26.286zM877.714 438.857q0-119.429-58.857-220.286t-159.714-159.714-220.286-58.857-220.286 58.857-159.714 159.714-58.857 220.286 58.857 220.286 159.714 159.714 220.286 58.857 220.286-58.857 159.714-159.714 58.857-220.286z\"></glyph><glyph unicode=\"\" d=\"M733.714 531.428q0 16-10.286 26.286l-52 51.429q-10.857 10.857-25.714 10.857t-25.714-10.857l-233.143-232.571-129.143 129.143q-10.857 10.857-25.714 10.857t-25.714-10.857l-52-51.429q-10.286-10.286-10.286-26.286 0-15.429 10.286-25.714l206.857-206.857q10.857-10.857 25.714-10.857 15.429 0 26.286 10.857l310.286 310.286q10.286 10.286 10.286 25.714zM877.714 438.857q0-119.429-58.857-220.286t-159.714-159.714-220.286-58.857-220.286 58.857-159.714 159.714-58.857 220.286 58.857 220.286 159.714 159.714 220.286 58.857 220.286-58.857 159.714-159.714 58.857-220.286z\"></glyph><glyph unicode=\"\" d=\"M585.143 164.571v91.429q0 8-5.143 13.143t-13.143 5.143h-54.857v292.571q0 8-5.143 13.143t-13.143 5.143h-182.857q-8 0-13.143-5.143t-5.143-13.143v-91.429q0-8 5.143-13.143t13.143-5.143h54.857v-182.857h-54.857q-8 0-13.143-5.143t-5.143-13.143v-91.429q0-8 5.143-13.143t13.143-5.143h256q8 0 13.143 5.143t5.143 13.143zM512 676.571v91.429q0 8-5.143 13.143t-13.143 5.143h-109.714q-8 0-13.143-5.143t-5.143-13.143v-91.429q0-8 5.143-13.143t13.143-5.143h109.714q8 0 13.143 5.143t5.143 13.143zM877.714 438.857q0-119.429-58.857-220.286t-159.714-159.714-220.286-58.857-220.286 58.857-159.714 159.714-58.857 220.286 58.857 220.286 159.714 159.714 220.286 58.857 220.286-58.857 159.714-159.714 58.857-220.286z\"></glyph><glyph unicode=\"\" d=\"M438.857 877.714q119.429 0 220.286-58.857t159.714-159.714 58.857-220.286-58.857-220.286-159.714-159.714-220.286-58.857-220.286 58.857-159.714 159.714-58.857 220.286 58.857 220.286 159.714 159.714 220.286 58.857zM512 165.143v108.571q0 8-5.143 13.429t-12.571 5.429h-109.714q-7.429 0-13.143-5.714t-5.714-13.143v-108.571q0-7.429 5.714-13.143t13.143-5.714h109.714q7.429 0 12.571 5.429t5.143 13.429zM510.857 361.714l10.286 354.857q0 6.857-5.714 10.286-5.714 4.571-13.714 4.571h-125.714q-8 0-13.714-4.571-5.714-3.429-5.714-10.286l9.714-354.857q0-5.714 5.714-10t13.714-4.286h105.714q8 0 13.429 4.286t6 10z\"></glyph></font></defs></svg>") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.notification-container {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999999;
+  width: 320px;
+  padding: 0px 15px;
+  max-height: calc(100% - 30px);
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+.notification {
+  box-sizing: border-box;
+  padding: 15px 15px 15px 58px;
+  border-radius: 2px;
+  color: #fff;
+  background-color: #ccc;
+  box-shadow: 0 0 12px #999;
+  cursor: pointer;
+  font-size: 1em;
+  line-height: 1.2em;
+  position: relative;
+  opacity: 0.9;
+  margin-top: 15px; }
+
+.notification .title {
+  font-size: 1em;
+  line-height: 1.2em;
+  font-weight: bold;
+  margin: 0 0 5px 0; }
+
+.notification:hover, .notification:focus {
+  opacity: 1; }
+
+.notification-enter {
+  visibility: hidden;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0); }
+
+.notification-enter.notification-enter-active {
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  transition: all 0.4s; }
+
+.notification-leave {
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.notification-leave.notification-leave-active {
+  visibility: hidden;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+  transition: all 0.4s; }
+
+.notification:before {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  margin-top: -14px;
+  display: block;
+  font-family: 'Notification';
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 28px; }
+
+.notification-info {
+  background-color: #2f96b4; }
+
+.notification-info:before {
+  content: "\F05A"; }
+
+.notification-success {
+  background-color: #51a351; }
+
+.notification-success:before {
+  content: "\F058"; }
+
+.notification-warning {
+  background-color: #f89406; }
+
+.notification-warning:before {
+  content: "\F06A"; }
+
+.notification-error {
+  background-color: #bd362f; }
+
+.notification-error:before {
+  content: "\F057"; }
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Light"), local("Roboto-Light"), url(/d26871e8149b5759f814fd3c7a4f784b.woff2) format("woff2"), url(/c73eb1ceba3321a80a0aff13ad373cb4.woff) format("woff");
+  font-style: normal;
+  font-weight: 300;
+  font-display: optional; }
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), local("Roboto-Regular"), url(/73f0a88bbca1bec19fb1303c689d04c6.woff2) format("woff2"), url(/35b07eb2f8711ae08d1f58c043880930.woff) format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional; }
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Medium"), local("Roboto-Medium"), url(/90d1676003d9c28c04994c18bfd8b558.woff2) format("woff2"), url(/1d6594826615607f6dc860bb49258acb.woff) format("woff");
+  font-style: normal;
+  font-weight: 500;
+  font-display: optional; }
+
+
+/*# sourceMappingURL=main.css.map*/

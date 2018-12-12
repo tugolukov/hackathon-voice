@@ -11,6 +11,13 @@ namespace hackathonvoice.Domain.Services
 {
     public class ParserService : IParserService
     {
+        private readonly IDatabaseService _databaseService;
+
+        public ParserService(IDatabaseService databaseService)
+        {
+            _databaseService = databaseService;
+        }
+
         public async Task<ReportModel> TextToCard(string text)
         {
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
@@ -225,6 +232,9 @@ namespace hackathonvoice.Domain.Services
                 }
             }
 
+            visit.PatientGuid = await _databaseService.CreatePatient(patient);
+            var visitGuid = await _databaseService.CreateVisit(visit);
+            
             report.PatientModel = patient;
             report.VisitModel = visit;
 

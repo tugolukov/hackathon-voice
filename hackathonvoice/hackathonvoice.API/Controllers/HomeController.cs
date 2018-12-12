@@ -41,7 +41,8 @@ namespace hackathonvoice.API.Controllers
         public async Task<ReportModel> SendFlacToAPI()
         {
             var request = Request;
-            var file = request.Form.Files.FirstOrDefault();
+            var form = await request.ReadFormAsync();
+            var file = form.Files.FirstOrDefault();
             var text = await _speechService.SpeechToText(file?.OpenReadStream());
             var result = await _parserService.TextToCard(text);
             return result;

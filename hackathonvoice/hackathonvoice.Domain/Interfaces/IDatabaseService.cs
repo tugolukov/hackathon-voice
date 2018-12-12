@@ -1,5 +1,5 @@
 using System;
-using System.Dynamic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using hackathonvoice.Database.Models;
 using hackathonvoice.Domain.ViewModels;
@@ -13,7 +13,7 @@ namespace hackathonvoice.Domain.Interfaces
         /// </summary>
         /// <param name="patient"></param>
         /// <returns></returns>
-        Task CreatePatient(PatientModel patient);
+        Task<Guid> CreatePatient(PatientModel patient);
         
         /// <summary>
         /// Обновление информации о пациенте
@@ -21,7 +21,13 @@ namespace hackathonvoice.Domain.Interfaces
         /// <param name="patient"></param>
         /// <returns></returns>
         Task UpdatePatient(PatientModel patient);
-        
+
+        /// <summary>
+        /// Получение всех пациентов
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Patient>> GetAllPatients();
+
         /// <summary>
         /// Получение пациента по уникальному идентификатору
         /// </summary>
@@ -34,7 +40,7 @@ namespace hackathonvoice.Domain.Interfaces
         /// </summary>
         /// <param name="visit"></param>
         /// <returns></returns>
-        Task CreateVisit(VisitModel visit);
+        Task<Guid> CreateVisit(VisitModel visit);
         
         /// <summary>
         /// Обновление информации о визите
@@ -49,5 +55,12 @@ namespace hackathonvoice.Domain.Interfaces
         /// <param name="guidVisit"></param>
         /// <returns></returns>
         Task<Visit> GetVisit(Guid guidVisit);
+
+        /// <summary>
+        /// Получение списка визитов для пациента
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        Task<List<Visit>> GetAllVisits(Guid guid);
     }
 }
