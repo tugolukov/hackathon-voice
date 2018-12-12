@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using hackathonvoice.Domain.Interfaces;
@@ -57,17 +59,18 @@ namespace hackathonvoice.Domain.Services
                 "номер",
                 "полис"
             };
-            
+
             // устанавливаем ключевые слова
             List<string> keys = new List<string>();
-            
+
             List<string> allkeys = new List<string>();
+            allkeys.AddRange(name);
+            allkeys.AddRange(policy);
             allkeys.AddRange(descriptions);
             allkeys.AddRange(diagnoses);
             allkeys.AddRange(recipe);
-            allkeys.AddRange(name);
-            allkeys.AddRange(policy);
-            
+
+
             foreach (var allkey in allkeys)
             {
                 if (text.Contains(allkey))
@@ -90,7 +93,7 @@ namespace hackathonvoice.Domain.Services
                         Text = word
                     });
                 }
-                
+
                 foreach (var key in keys)
                 {
                     if (word.Contains(key))
@@ -121,14 +124,12 @@ namespace hackathonvoice.Domain.Services
                         }
 
                         check = false;
-
                     }
-
                 }
 
                 check = true;
             }
-            
+
             // Получаем коллекцию с ключами
             List<Litera> result = new List<Litera>();
             Litera buffer = new Litera();
@@ -144,9 +145,10 @@ namespace hackathonvoice.Domain.Services
                     if (phrases[i].IsKey == buffer.IsKey)
                     {
                         buffer.Text += " " + phrases[i].Text;
-                        if ((i+1) == phrases.Count)
+                        if ((i + 1) == phrases.Count)
                         {
                             result.Add(buffer);
+                            buffer = new Litera();
                         }
                     }
                     else
@@ -155,65 +157,72 @@ namespace hackathonvoice.Domain.Services
                         buffer = new Litera();
                         buffer.Text = phrases[i].Text;
                         buffer.IsKey = phrases[i].IsKey;
+                        if ((i + 1) == phrases.Count)
+                        {
+                            result.Add(buffer);
+                            buffer = new Litera();
+                        }
                     }
-                }                
+                }
+
+
             }
 
             // Делаем красивую коллекцию
             Dictionary<string, string> model = new Dictionary<string, string>();
-            for (int i = 0; i < result.Count; i+=2)
+            for (int i = 0; i < result.Count; i += 2)
             {
-                model.Add(result[i].Text, result[i+1].Text);
+                model.Add(result[i].Text, result[i + 1].Text);
             }
 
             ReportModel report = new ReportModel();
-            
+
             PatientModel patient = new PatientModel();
             VisitModel visit = new VisitModel();
-            
+
             foreach (var item in name)
             {
-                if (model.ContainsKey(item))
+                if (model.Keys.Any(a => a.Contains(item)))
                 {
                     var data = model.First(a => a.Key.Contains(item)).Value;
                     patient.FullName = data;
                     break;
                 }
             }
-    
+
             foreach (var item in policy)
             {
-                if (model.ContainsKey(item))
+                if (model.Keys.Any(a => a.Contains(item)))
                 {
                     var data = model.First(a => a.Key.Contains(item)).Value;
                     patient.Policy = data;
                     break;
                 }
             }
-    
+
             foreach (var item in descriptions)
             {
-                if (model.ContainsKey(item))
+                if (model.Keys.Any(a => a.Contains(item)))
                 {
                     var data = model.First(a => a.Key.Contains(item)).Value;
                     visit.Description = data;
                     break;
                 }
             }
-    
+
             foreach (var item in diagnoses)
             {
-                if (model.ContainsKey(item))
+                if (model.Keys.Any(a => a.Contains(item)))
                 {
                     var data = model.First(a => a.Key.Contains(item)).Value;
                     visit.Diagnoses = data;
                     break;
                 }
             }
-    
+
             foreach (var item in recipe)
             {
-                if (model.ContainsKey(item))
+                if (model.Keys.Any(a => a.Contains(item)))
                 {
                     var data = model.First(a => a.Key.Contains(item)).Value;
                     visit.Recipe = data;

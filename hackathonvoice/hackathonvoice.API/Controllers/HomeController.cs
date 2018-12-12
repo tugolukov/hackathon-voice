@@ -59,11 +59,7 @@ namespace hackathonvoice.API.Controllers
 
                     if (result.StatusCode == HttpStatusCode.OK)
                     {
-                        var count = result.Result.Variants.Count - 1;
-                        Random rnd = new Random(); 
-                        int value = rnd.Next(0, count);
-
-                        var model = await _parserService.TextToCard(result.Result.Variants[value].Text);
+                        var model = await _parserService.TextToCard(result.Result.Variants.First().Text);
                         return model;
                     }
                     
