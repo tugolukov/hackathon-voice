@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using hackathonvoice.Domain.Interfaces;
+using hackathonvoice.Domain.ParserModels;
 using hackathonvoice.Domain.ViewModels;
 
 namespace hackathonvoice.Domain.Services
@@ -18,47 +19,25 @@ namespace hackathonvoice.Domain.Services
     {
         public async Task<ReportModel> TextToCard(string text)
         {
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            Dictionary<int, string> nextdictionary = new Dictionary<int, string>();
-
             // делим текст на слова
             string[] words = text.Split(' ');
-
-            Dictionary<int, List<int>> keywords = new Dictionary<int, List<int>>();
-
+            
+            MedicalTherapist parseModel = new MedicalTherapist();
+            
             //жалоб
-            List<string> descriptions = new List<string>()
-            {
-                "жалоб",
-                "жалует",
-                "беспоко"
-            };
+            var descriptions = parseModel.GetDescription();
+            
             //диагнозы
-            List<string> diagnoses = new List<string>()
-            {
-                "диагноз",
-                "вердикт",
-                "заключ"
-            };
+            var diagnoses = parseModel.GetDiagnoses();
+            
             //рецепты
-            List<string> recipe = new List<string>()
-            {
-                "назнач",
-                "лекарст",
-                "принима",
-                "лечени"
-            };
-            List<string> name = new List<string>()
-            {
-                "имя",
-                "зовут",
-                "пациент"
-            };
-            List<string> policy = new List<string>()
-            {
-                "номер",
-                "полис"
-            };
+            var recipe = parseModel.GetRecipe();
+            
+            //имя пациента
+            var name = parseModel.GetName();
+            
+            //полис
+            var policy = parseModel.GetPolicy();
 
             // устанавливаем ключевые слова
             List<string> keys = new List<string>();
