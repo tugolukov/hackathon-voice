@@ -13,6 +13,15 @@ namespace hackathonvoice.Domain.Services
     {
         public bool IsKey { get; set; }
         public string Text { get; set; }
+
+        public Litera()
+        {}
+        
+        public Litera(bool isKey, string text)
+        {
+            IsKey = isKey;
+            Text = text;
+        }
     }
 
     public class ParserService : IParserService
@@ -24,7 +33,7 @@ namespace hackathonvoice.Domain.Services
             
             MedicalTherapist parseModel = new MedicalTherapist();
             
-            //жалоб
+            //жалобы
             var descriptions = parseModel.GetDescription();
             
             //диагнозы
@@ -41,23 +50,8 @@ namespace hackathonvoice.Domain.Services
 
             // устанавливаем ключевые слова
             List<string> keys = new List<string>();
-
-            List<string> allkeys = new List<string>();
-            allkeys.AddRange(name);
-            allkeys.AddRange(policy);
-            allkeys.AddRange(descriptions);
-            allkeys.AddRange(diagnoses);
-            allkeys.AddRange(recipe);
-
-
-            foreach (var allkey in allkeys)
-            {
-                if (text.Contains(allkey))
-                {
-                    keys.Add(allkey);
-                }
-            }
-
+            keys = parseModel.GetAllKeys();
+            
             // Присваиваем словам ключи
             List<Litera> phrases = new List<Litera>();
             foreach (var word in words)
@@ -66,11 +60,7 @@ namespace hackathonvoice.Domain.Services
 
                 if (keys.Count == 0)
                 {
-                    phrases.Add(new Litera()
-                    {
-                        IsKey = false,
-                        Text = word
-                    });
+                    phrases.Add(new Litera(false, word));
                 }
 
                 foreach (var key in keys)
@@ -79,33 +69,22 @@ namespace hackathonvoice.Domain.Services
                     {
                         if (check)
                         {
-                            phrases.Add(new Litera()
-                            {
-                                IsKey = true,
-                                Text = word
-                            });
+                            phrases.Add(new Litera(true, word));
                             keys.Remove(key);
                             break;
                         }
-
                         check = false;
                     }
                     else
                     {
                         if (check)
                         {
-                            phrases.Add(new Litera()
-                            {
-                                IsKey = false,
-                                Text = word
-                            });
+                            phrases.Add(new Litera(false, word));
                             break;
                         }
-
                         check = false;
                     }
                 }
-
                 check = true;
             }
 
@@ -143,8 +122,6 @@ namespace hackathonvoice.Domain.Services
                         }
                     }
                 }
-
-
             }
 
             // Делаем красивую коллекцию

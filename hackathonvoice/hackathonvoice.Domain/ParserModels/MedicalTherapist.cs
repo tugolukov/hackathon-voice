@@ -65,5 +65,17 @@ namespace hackathonvoice.Domain.ParserModels
         {
             return _policy;
         }
+
+        public List<string> GetAllKeys()
+        {
+            var keys = new List<string>();
+            keys.AddRange(_descriptions);
+            keys.AddRange(_diagnoses);
+            keys.AddRange(_recipe);
+            keys.AddRange(_name);
+            keys.AddRange(_policy);
+            return keys;
+        }
+        
     }
 }
