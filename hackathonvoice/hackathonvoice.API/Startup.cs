@@ -15,12 +15,20 @@ namespace hackathonvoice.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IHostingEnvironment Environment { get; }
+        public IConfiguration Configuration { get; }
+        
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            Environment = env;
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables()
+                .Build();
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

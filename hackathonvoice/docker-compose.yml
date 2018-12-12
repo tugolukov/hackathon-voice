@@ -9,7 +9,7 @@ networks:
     external: true
 
 services:
-  library-nginx:
+  vox-nginx:
     image: vox-nginx:work
     build:
       context: ./Nginx
